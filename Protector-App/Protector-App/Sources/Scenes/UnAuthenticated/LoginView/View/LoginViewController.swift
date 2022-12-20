@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -16,6 +18,8 @@ class LoginViewController: UIViewController {
     var activityIndicator: UIActivityIndicatorView!
     var authViewModel: AuthenticationService = AuthenticationService()
     var authGoogle: GoogleAuthentication = GoogleAuthentication()
+    var authFacebook: FaceAuthenticationService = FaceAuthenticationService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +37,20 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func buttonLoginGoogle(_ sender: UIButton) {
-        
+        authGoogle.signIn()
     }
     
     @IBAction func buttonLoginFacebook(_ sender: UIButton) {
+        authFacebook.loginFaceBook()
+        print("Tap button")
+    }
+    
+    func showHome(result: AuthDataResult?, error: Error?, provedor: Provedor) {
+        if let result = result, error == nil {
+            self.navigationController?.pushViewController(HomeViewController(), animated: true)
+        } else {
+            print("Erro login")
+        }
     }
     
     func setupDelegate() {
@@ -50,7 +64,7 @@ class LoginViewController: UIViewController {
         loginButton.isEnabled = false
     }
     
-    func setActivityIndicator()->Void{
+    func setActivityIndicator() -> Void {
         activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
         activityIndicator.center = view.center
         activityIndicator.isHidden = true
@@ -78,7 +92,7 @@ class LoginViewController: UIViewController {
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+        
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
@@ -111,7 +125,7 @@ extension LoginViewController: AuthenticationServiceDelegate {
     }
     
     func navigateToHomeViewController(_ homeViewController: UIViewController) {
-//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(homeViewController)
+        
     }
     
     func showError(_ message: String) {

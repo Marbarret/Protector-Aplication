@@ -19,7 +19,7 @@ protocol GoogleAuthenticationProtocol {
 
 class GoogleAuthentication {
     
-    func signIn(completion: @escaping (Result<Bool, Error>) -> Void) {
+    func signIn() {
         guard let clientId = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientId)
         
@@ -30,9 +30,9 @@ class GoogleAuthentication {
                 self.authenticateUser(for: GIDuser) { result in
                     switch result {
                     case .success:
-                        completion(.success(true))
+                        print("Success")
                     case .failure:
-                        completion(.failure(error?.localizedDescription as! Error))
+                        print(error?.localizedDescription)
                     }
                 }
             }
@@ -107,4 +107,6 @@ final class ApplicationUtility {
         }
         return root
     }
+    
+    
 }

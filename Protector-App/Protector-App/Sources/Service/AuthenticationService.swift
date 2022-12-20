@@ -21,7 +21,6 @@ class AuthenticationService {
         Auth.auth().signIn(withEmail: credential.email, password: credential.password) { (authResult, error) in
             switch error {
             case .some(let error as NSError) where error.code == AuthErrorCode.wrongPassword.rawValue:
-                
                 self.delegate?.showError("Senha incorreta")
             case .some(let error as NSError) where error.code == AuthErrorCode.userNotFound.rawValue:
                 

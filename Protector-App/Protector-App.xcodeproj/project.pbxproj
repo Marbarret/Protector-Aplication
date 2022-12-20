@@ -14,6 +14,8 @@
 		B69404FD295205A300DFAF49 /* ModifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69404FC295205A300DFAF49 /* ModifierView.swift */; };
 		B694050129521B5B00DFAF49 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = B694050029521B5B00DFAF49 /* FacebookCore */; };
 		B694050329521B5B00DFAF49 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B694050229521B5B00DFAF49 /* FacebookLogin */; };
+		B69405062952267D00DFAF49 /* FaceAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69405052952267D00DFAF49 /* FaceAuthenticationService.swift */; };
+		B694050A29523CAF00DFAF49 /* GoogleAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */; };
 		B6D3D386294E949A001BCDB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D385294E949A001BCDB6 /* AppDelegate.swift */; };
 		B6D3D388294E949A001BCDB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D387294E949A001BCDB6 /* SceneDelegate.swift */; };
 		B6D3D38A294E949A001BCDB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D389294E949A001BCDB6 /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 		B693D0A829510E3B00344B5F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B69404F42951FE0100DFAF49 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		B69404FC295205A300DFAF49 /* ModifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierView.swift; sourceTree = "<group>"; };
+		B69405052952267D00DFAF49 /* FaceAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceAuthenticationService.swift; sourceTree = "<group>"; };
+		B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthViewModel.swift; sourceTree = "<group>"; };
 		B6D3D382294E949A001BCDB6 /* Protector-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Protector-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D3D385294E949A001BCDB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6D3D387294E949A001BCDB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		B69404FA2951FE8900DFAF49 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			children = (
 				B6EEC07D294FAC40006FE94B /* AuthenticationService.swift */,
 				B6EEC0802950D920006FE94B /* GoogleAuthentication.swift */,
+				B69405052952267D00DFAF49 /* FaceAuthenticationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			files = (
 				B693D0A929510E3B00344B5F /* RegisterViewController.swift in Sources */,
 				B6EEC0812950D920006FE94B /* GoogleAuthentication.swift in Sources */,
+				B694050A29523CAF00DFAF49 /* GoogleAuthViewModel.swift in Sources */,
 				B6D3D38A294E949A001BCDB6 /* ViewController.swift in Sources */,
 				B6D3D386294E949A001BCDB6 /* AppDelegate.swift in Sources */,
 				B69404FD295205A300DFAF49 /* ModifierView.swift in Sources */,
@@ -325,6 +332,7 @@
 				B693D0A52951093200344B5F /* LoginViewController.swift in Sources */,
 				B6EEC0842950F082006FE94B /* UserModel.swift in Sources */,
 				B693D0A2295108E100344B5F /* HomeViewController.swift in Sources */,
+				B69405062952267D00DFAF49 /* FaceAuthenticationService.swift in Sources */,
 				B6EEC07E294FAC40006FE94B /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
