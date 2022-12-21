@@ -6,32 +6,33 @@
 //
 
 import UIKit
+import Combine
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var txtFieldEmail: UITextField!
     @IBOutlet weak var txtFieldPassword: UITextField!
-    @IBOutlet weak var txtFieldConfirmePassword: UITextField!
+    @IBOutlet weak var repeatPassword: UITextField!
     
     @IBOutlet weak var registerButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView!
-    var authViewModel: AuthenticationService = AuthenticationService()
+    var authViewModel: AuthViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
         setupUI()
+        registerButton.setTitleColor(.clear, for: .disabled)
     }
     
     @IBAction func registerPress(_ sender: UIButton) {
         guard let email = txtFieldEmail.text else {return}
         guard let password = txtFieldPassword.text else {return}
-        self.authViewModel.credential?.email = email
-        self.authViewModel.credential?.password = password
+        authViewModel?.credential.email = email
+        authViewModel?.credential.password = password
         
-        self.authViewModel.registerUser(self.authViewModel.credential!)
-        print("TAP BUTTON")
+        authViewModel?.register()
     }
     
     @IBAction func registerGoogle(_ sender: UIButton) {
@@ -45,7 +46,6 @@ class RegisterViewController: UIViewController {
     func setupDelegate() {
         txtFieldEmail.delegate = self
         txtFieldPassword.delegate = self
-        authViewModel.delegate = self
     }
     
     fileprivate func setupUI() {
@@ -68,22 +68,26 @@ class RegisterViewController: UIViewController {
     }
     
     fileprivate func updateView() {
-        if(validateFields()){
+        if(validFields()) {
             registerButton.isEnabled = true
-        }else{
+        } else {
             registerButton.isEnabled = false
+            registerButton.setTitleColor(.clear, for: .disabled)
         }
     }
     
-    fileprivate func validateFields() -> Bool {
-        return (txtFieldPassword.text!.count >= 8) && (isValidEmail(txtFieldEmail.text ?? ""))
+    func validFields() -> Bool {        
+        return Validades.validFields(email: checkEmail(), password: checkPassword())
     }
     
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
+    func checkEmail() -> String {
+        let email = txtFieldEmail.text ?? ""
+        return email
+    }
+    
+    func checkPassword() -> String {
+        let password = txtFieldPassword.text ?? ""
+        return password
     }
 }
 
@@ -93,12 +97,18 @@ extension RegisterViewController: UITextFieldDelegate {
             updateView()
         } else if textField == self.txtFieldPassword {
             updateView()
+        } else if self.txtFieldPassword == self.repeatPassword {
+            updateView()
         }
         return true
     }
 }
 
 extension RegisterViewController: AuthenticationServiceDelegate {
+    func navigateToHomeViewController(_ homeViewController: UIViewController) {
+        
+    }
+    
     func hideActivityIndicator() {
         DispatchQueue.main.async {
             if !self.activityIndicator.isHidden{
@@ -106,14 +116,9 @@ extension RegisterViewController: AuthenticationServiceDelegate {
                     self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
-                    
                 }
             }
         }
-    }
-    
-    func navigateToHomeViewController(_ homeViewController: UIViewController) {
-//        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(homeViewController)
     }
     
     func showError(_ message: String) {

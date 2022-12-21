@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import Combine
 
 class LoginViewController: UIViewController {
     
@@ -16,24 +17,23 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView!
-    var authViewModel: AuthenticationService = AuthenticationService()
+    var authViewModel: AuthViewModel?
     var authGoogle: GoogleAuthentication = GoogleAuthentication()
     var authFacebook: FaceAuthenticationService = FaceAuthenticationService()
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
         setupUI()
+        loginButton.setTitleColor(.clear, for: .disabled)
     }
     
     @IBAction func buttonLogin(_ sender: UIButton) {
         guard let email = txtFieldEmail.text else {return}
         guard let password = txtFieldPassword.text else {return}
-        self.authViewModel.credential?.email = email
-        self.authViewModel.credential?.password = password
-        
-        self.authViewModel.loginUser(self.authViewModel.credential!)
+        authViewModel?.credential.email = email
+        authViewModel?.credential.password = password
+        authViewModel?.signIn()
     }
     
     @IBAction func buttonLoginGoogle(_ sender: UIButton) {
@@ -42,21 +42,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func buttonLoginFacebook(_ sender: UIButton) {
         authFacebook.loginFaceBook()
-        print("Tap button")
-    }
-    
-    func showHome(result: AuthDataResult?, error: Error?, provedor: Provedor) {
-        if let result = result, error == nil {
-            self.navigationController?.pushViewController(HomeViewController(), animated: true)
-        } else {
-            print("Erro login")
-        }
     }
     
     func setupDelegate() {
         txtFieldEmail.delegate = self
         txtFieldPassword.delegate = self
-        authViewModel.delegate = self
+//        authViewModel.delegate = self
     }
     
     fileprivate func setupUI() {
@@ -70,7 +61,7 @@ class LoginViewController: UIViewController {
         activityIndicator.isHidden = true
         self.view.addSubview(activityIndicator)
     }
-    
+
     func displayActivityIndicatorView() -> () {
         self.view.isUserInteractionEnabled = false
         self.view.bringSubviewToFront(self.activityIndicator)
@@ -79,23 +70,20 @@ class LoginViewController: UIViewController {
     }
     
     fileprivate func updateView() {
-        if(validateFields()){
+        if(validFields()) {
             loginButton.isEnabled = true
-        }else{
+        } else {
             loginButton.isEnabled = false
+            loginButton.setTitleColor(.clear, for: .disabled)
         }
     }
     
-    fileprivate func validateFields() -> Bool {
-        return (txtFieldPassword.text!.count >= 8) && (isValidEmail(txtFieldEmail.text ?? ""))
+    func validFields() -> Bool {
+        let email = txtFieldEmail.text ?? ""
+        let password = txtFieldPassword.text ?? ""
+        return Validades.validFields(email: email, password: password)
     }
     
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -118,7 +106,6 @@ extension LoginViewController: AuthenticationServiceDelegate {
                     self.view.isUserInteractionEnabled = true
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
-                    
                 }
             }
         }

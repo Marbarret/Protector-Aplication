@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -421,14 +420,14 @@
                                     <segue destination="JaY-B3-MTF" kind="show" id="FDm-NB-CCz"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohp-N8-pb6">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohp-N8-pb6">
                                 <rect key="frame" x="30" y="283" width="354" height="50"/>
                                 <color key="backgroundColor" name="lightBlue"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Nul-h2-igj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JA7-UW-kut">
                                 <rect key="frame" x="30" y="153" width="166" height="20"/>
@@ -446,7 +445,7 @@
                                     <constraint firstAttribute="height" constant="50" id="kZR-TN-EKh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KnO-H3-cFe"/>
@@ -485,9 +484,9 @@
                     <navigationItem key="navigationItem" id="8k1-IN-ucc"/>
                     <connections>
                         <outlet property="registerButton" destination="Kxm-Kq-7bm" id="Ive-m9-Gnr"/>
-                        <outlet property="txtFieldConfirmePassword" destination="O7k-WB-IJQ" id="VQ5-ZC-r20"/>
-                        <outlet property="txtFieldEmail" destination="be8-Bz-bZZ" id="BXG-a4-vI2"/>
-                        <outlet property="txtFieldPassword" destination="ohp-N8-pb6" id="YBJ-IG-xE8"/>
+                        <outlet property="repeatPassword" destination="O7k-WB-IJQ" id="Mcz-1P-R1A"/>
+                        <outlet property="txtFieldEmail" destination="be8-Bz-bZZ" id="fil-zL-nOn"/>
+                        <outlet property="txtFieldPassword" destination="ohp-N8-pb6" id="N8d-pY-Aic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpe-7O-W8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -556,11 +555,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yKh-jw-7bS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorTransitionMaskImage="arrow.backward" catalog="system" id="svx-26-mGD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="svx-26-mGD">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="mainColor"/>
-                        <imageReference key="backIndicatorImage" image="arrow.backward" catalog="system" renderingMode="template"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -574,10 +572,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uIx-Ln-SC7"/>
-        <segue reference="WtN-Fb-n7n"/>
+        <segue reference="FDm-NB-CCz"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="logo-protector" width="640.5" height="600"/>
         <namedColor name="auxiliarColor">

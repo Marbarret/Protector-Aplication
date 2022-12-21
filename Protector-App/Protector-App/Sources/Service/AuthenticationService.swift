@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import Combine
 
 protocol AuthenticationServiceDelegate {
     func showError(_ message: String)
@@ -17,43 +18,31 @@ class AuthenticationService {
     var delegate: AuthenticationServiceDelegate?
     var credential: UserCredential? = UserCredential(email: "", password: "", username: "")
     
-    func loginUser(_ credential: UserCredential) {
+    func loginUser(_ credential: UserCredential, completion: @escaping (Result<Bool, Error>) -> Void) {
         Auth.auth().signIn(withEmail: credential.email, password: credential.password) { (authResult, error) in
-            switch error {
-            case .some(let error as NSError) where error.code == AuthErrorCode.wrongPassword.rawValue:
-                self.delegate?.showError("Senha incorreta")
-            case .some(let error as NSError) where error.code == AuthErrorCode.userNotFound.rawValue:
-                
-                self.delegate?.showError("Email incorreto")
-                
-            case .some(let error):
-                
-                self.delegate?.showError("Login error: \(error.localizedDescription)")
-                
-            case .none:
-                if (authResult?.user) != nil {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homeViewController = storyboard.instantiateViewController(identifier: "HomeViewController")
-                    self.delegate?.navigateToHomeViewController(homeViewController)
+            if error != nil  {
+                completion(.failure(error?.localizedDescription as! Error))
+            } else {
+                switch authResult {
+                case .none:
+                    completion(.failure(error?.localizedDescription as! Error))
+                case .some(_):
+                    completion(.success(true))
                 }
             }
         }
     }
     
-    func registerUser(_ credential: UserCredential) {
+    func registerUser(_ credential: UserCredential, completion: @escaping (Result<Bool, Error>) -> Void) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (authResult, error) in
-            switch error {
-            case .some(let error as NSError) where error.code == AuthErrorCode.weakPassword.rawValue:
-                self.delegate?.showError("Senha fraca")
-                
-            case .some(let error):
-                self.delegate?.showError("Register error: \(error.localizedDescription)")
-                
-            case .none:
-                if (authResult?.user) != nil {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homeViewController = storyboard.instantiateViewController(identifier: "RegisterViewController")
-                    self.delegate?.navigateToHomeViewController(homeViewController)
+            if error != nil  {
+                completion(.failure(error?.localizedDescription as! Error))
+            } else {
+                switch authResult {
+                case .none:
+                    completion(.failure(error?.localizedDescription as! Error))
+                case .some(_):
+                    completion(.success(true))
                 }
             }
         }
@@ -67,4 +56,3 @@ class AuthenticationService {
         }
     }
 }
-

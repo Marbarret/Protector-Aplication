@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6783644295272F900EA65E8 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6783643295272F900EA65E8 /* LoginCoordinator.swift */; };
 		B693D0A2295108E100344B5F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693D0A1295108E100344B5F /* HomeViewController.swift */; };
 		B693D0A52951093200344B5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693D0A42951093200344B5F /* LoginViewController.swift */; };
 		B693D0A929510E3B00344B5F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B693D0A829510E3B00344B5F /* RegisterViewController.swift */; };
@@ -16,6 +17,7 @@
 		B694050329521B5B00DFAF49 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B694050229521B5B00DFAF49 /* FacebookLogin */; };
 		B69405062952267D00DFAF49 /* FaceAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69405052952267D00DFAF49 /* FaceAuthenticationService.swift */; };
 		B694050A29523CAF00DFAF49 /* GoogleAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */; };
+		B6B58FC5295351380032EE40 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B58FC4295351380032EE40 /* AuthViewModel.swift */; };
 		B6D3D386294E949A001BCDB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D385294E949A001BCDB6 /* AppDelegate.swift */; };
 		B6D3D388294E949A001BCDB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D387294E949A001BCDB6 /* SceneDelegate.swift */; };
 		B6D3D38A294E949A001BCDB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3D389294E949A001BCDB6 /* ViewController.swift */; };
@@ -32,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6783643295272F900EA65E8 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		B693D0A1295108E100344B5F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B693D0A42951093200344B5F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B693D0A829510E3B00344B5F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		B69404FC295205A300DFAF49 /* ModifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierView.swift; sourceTree = "<group>"; };
 		B69405052952267D00DFAF49 /* FaceAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceAuthenticationService.swift; sourceTree = "<group>"; };
 		B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthViewModel.swift; sourceTree = "<group>"; };
+		B6B58FC4295351380032EE40 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B6D3D382294E949A001BCDB6 /* Protector-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Protector-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D3D385294E949A001BCDB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6D3D387294E949A001BCDB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,10 +73,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6783642295272D500EA65E8 /* PushLogin */ = {
+			isa = PBXGroup;
+			children = (
+				B6783643295272F900EA65E8 /* LoginCoordinator.swift */,
+			);
+			path = PushLogin;
+			sourceTree = "<group>";
+		};
 		B693D09E2950F98900344B5F /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				B69404FA2951FE8900DFAF49 /* ViewModel */,
 				B69404F92951FE8400DFAF49 /* View */,
 			);
 			path = LoginView;
@@ -81,7 +92,6 @@
 		B693D0A729510E2100344B5F /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				B69404F82951FE7800DFAF49 /* ViewModel */,
 				B69404F72951FE7200DFAF49 /* View */,
 			);
 			path = Register;
@@ -93,13 +103,6 @@
 				B693D0A829510E3B00344B5F /* RegisterViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		B69404F82951FE7800DFAF49 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B69404F92951FE8400DFAF49 /* View */ = {
@@ -114,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B694050929523CAF00DFAF49 /* GoogleAuthViewModel.swift */,
+				B6B58FC4295351380032EE40 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -180,6 +184,7 @@
 		B6EEC076294FA0E7006FE94B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B6783642295272D500EA65E8 /* PushLogin */,
 				B69404F42951FE0100DFAF49 /* Validations.swift */,
 				B69404FC295205A300DFAF49 /* ModifierView.swift */,
 			);
@@ -232,6 +237,7 @@
 		B6EEC07C294FA8D9006FE94B /* UnAuthenticated */ = {
 			isa = PBXGroup;
 			children = (
+				B69404FA2951FE8900DFAF49 /* ViewModel */,
 				B693D0A729510E2100344B5F /* Register */,
 				B693D09E2950F98900344B5F /* LoginView */,
 			);
@@ -323,8 +329,10 @@
 			files = (
 				B693D0A929510E3B00344B5F /* RegisterViewController.swift in Sources */,
 				B6EEC0812950D920006FE94B /* GoogleAuthentication.swift in Sources */,
+				B6783644295272F900EA65E8 /* LoginCoordinator.swift in Sources */,
 				B694050A29523CAF00DFAF49 /* GoogleAuthViewModel.swift in Sources */,
 				B6D3D38A294E949A001BCDB6 /* ViewController.swift in Sources */,
+				B6B58FC5295351380032EE40 /* AuthViewModel.swift in Sources */,
 				B6D3D386294E949A001BCDB6 /* AppDelegate.swift in Sources */,
 				B69404FD295205A300DFAF49 /* ModifierView.swift in Sources */,
 				B69404F52951FE0100DFAF49 /* Validations.swift in Sources */,
