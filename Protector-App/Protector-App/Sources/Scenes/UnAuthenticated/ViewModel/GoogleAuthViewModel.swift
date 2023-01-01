@@ -8,6 +8,8 @@
 import Foundation
 
 class GoogleAuthViewModel {
+    var provider: ProviderLog = .unknown
+    
     var service: GoogleAuthenticationProtocol!
     init(service: GoogleAuthenticationProtocol) {
         self.service = service
@@ -17,16 +19,21 @@ class GoogleAuthViewModel {
         service.signIn { (result) in
             switch result {
             case .success:
-                print("Login")
+                self.provider = .google
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+    
+    func logout() {
+        self.service.signOut()
+    }
 }
 
-enum SignState {
-    case signIn
-    case signOut
-    case unkwond
+enum ProviderLog {
+    case basic
+    case google
+    case facebook
+    case unknown
 }

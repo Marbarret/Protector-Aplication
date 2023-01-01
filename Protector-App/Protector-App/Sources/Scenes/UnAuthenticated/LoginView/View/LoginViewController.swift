@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
-import Combine
 
 class LoginViewController: UIViewController {
     
@@ -41,13 +38,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func buttonLoginFacebook(_ sender: UIButton) {
-        authFacebook.loginFaceBook()
+
     }
     
     func setupDelegate() {
         txtFieldEmail.delegate = self
         txtFieldPassword.delegate = self
-//        authViewModel.delegate = self
     }
     
     fileprivate func setupUI() {

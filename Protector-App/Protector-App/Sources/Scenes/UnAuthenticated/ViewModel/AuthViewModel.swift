@@ -5,10 +5,12 @@
 //  Created by Marcylene Barreto on 21/12/22.
 //
 
-import Foundation
+import UIKit
 
 class AuthViewModel {
     var credential: UserCredential
+    
+    var statusLogin: ProviderLog = .unknown
     
     var service: AuthenticationService!
     init(service: AuthenticationService, credential: UserCredential) {
@@ -20,7 +22,8 @@ class AuthViewModel {
         service.loginUser(credential) { (result) in
             switch result {
             case .success:
-                self.service.delegate?.navigateToHomeViewController(HomeViewController())
+                self.statusLogin = .basic
+                self.service.delegate?.navigateToHomeViewController(WelcomeViewController())
             case .failure(let err):
                 print(err.localizedDescription)
             }

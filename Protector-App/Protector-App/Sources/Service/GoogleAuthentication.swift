@@ -5,7 +5,7 @@
 //  Created by Marcylene Barreto on 19/12/22.
 //
 
-import Foundation
+import UIKit
 import Firebase
 import GoogleSignIn
 
@@ -107,6 +107,24 @@ final class ApplicationUtility {
         }
         return root
     }
+}
+
+extension UIViewController {
+    private func setRootViewController(_ vc: UIViewController?) {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+              fatalError("could not get scene delegate ")
+            }
+        sceneDelegate.window?.rootViewController = vc
+    }
     
-    
+    func showViewController(_ id: String, provider: Provider) {
+        let vc = storyboard?.instantiateViewController(identifier: id)
+        setRootViewController(vc)
+      }
+}
+
+enum Provider {
+    case basic
+    case google
+    case facebook
 }

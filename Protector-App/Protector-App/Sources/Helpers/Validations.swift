@@ -21,9 +21,17 @@ class Validades {
     
     static func isValidEmail(_ email: String?) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-
 }
+
+
+/*
+ func makeAlert(titleInput: String, messageInput: String) {
+  let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+  let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+  alert.addAction(okButton)
+ self.present(alert, animated: true, completion: nil)
+ }
+ */

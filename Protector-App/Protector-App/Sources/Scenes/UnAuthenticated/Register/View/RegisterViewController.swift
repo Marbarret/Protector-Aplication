@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 class RegisterViewController: UIViewController {
     
@@ -31,16 +30,7 @@ class RegisterViewController: UIViewController {
         guard let password = txtFieldPassword.text else {return}
         authViewModel?.credential.email = email
         authViewModel?.credential.password = password
-        
         authViewModel?.register()
-    }
-    
-    @IBAction func registerGoogle(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func registerFacebook(_ sender: UIButton) {
-        
     }
     
     func setupDelegate() {
